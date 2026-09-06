@@ -11,16 +11,14 @@ import type {SceneMode} from './mocap-definitions';
 const PAPER='https://arxiv.org/abs/2608.11958';
 const DATASET='https://doi.org/10.57967/hf/9950';
 const HF='https://huggingface.co/datasets/Tdongxu/A_Synchronized_Lower_Limb_AMG_sEMG_and_Mocap';
-const citation=`@article{tang2026synchronized,
-  title = {Synchronized AMG and EMG Dataset of Lower-limb
-           Muscle Activities in Everyday Training},
-  author = {Tang, Dongxu and Shih, Ying-Lei and Ren, Zhuoyi
-            and Liao, Jianting and Shao, Yitian},
-  year = {2026},
-  eprint = {2608.11958},
-  archivePrefix = {arXiv},
-  primaryClass = {cs.HC},
-  doi = {10.48550/arXiv.2608.11958}
+const citation=`@misc{tang2026synchronizedamgemgdataset,
+      title={Synchronized AMG and EMG Dataset of Lower-limb Muscle Activities in Everyday Training}, 
+      author={Dongxu Tang and Shih Ying-Lei and Zhuoyi Ren and Jianting Liao and Yitian Shao},
+      year={2026},
+      eprint={2608.11958},
+      archivePrefix={arXiv},
+      primaryClass={cs.HC},
+      url={https://arxiv.org/abs/2608.11958}, 
 }`;
 export default function Home() {
  const [copyState,setCopyState]=useState('');
