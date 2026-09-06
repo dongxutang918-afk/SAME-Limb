@@ -1,0 +1,7 @@
+feature_label,evaluation,mae_mean,ci95_low,ci95_high,n_subjects,feature_dimension,aggregation,interval
+AMG,within-subject,9.457531585489043,9.096173998055198,9.842776501052048,30,384,"within each subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+AMG,cross-subject,9.589731568866753,9.119811645854039,10.056338676658612,7,384,"within each subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+AMG+EMG,within-subject,8.820108673734296,8.489576026213202,9.179872930211475,30,400,"within each subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+EMG,within-subject,12.054467283415631,11.645807099880807,12.48038862114454,30,16,"within each subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+AMG+EMG,cross-subject,9.641547645156532,9.056780831316797,10.206755935670556,7,400,"within each subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+EMG,cross-subject,13.743362074740345,13.073181951841532,14.395179460773685,7,16,"within each subject, then equal-subject mean",95% percentile subject-resampling bootstrap

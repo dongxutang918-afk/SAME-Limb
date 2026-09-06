@@ -1,0 +1,1214 @@
+{
+  "primary": [
+    {
+      "model": "Random Forest",
+      "evaluation": "cross-subject",
+      "target_setting": "Window-end estimation",
+      "input": "AMG",
+      "filter": "5-100 Hz",
+      "seed": 42,
+      "test_windows": 61687,
+      "mae_deg": 9.591110090300502,
+      "rmse_deg": 13.638971561356072,
+      "pearson_r": 0.6343992378283507,
+      "aggregation": "pooled valid test windows; each output computed separately; arithmetic mean across four outputs"
+    },
+    {
+      "model": "TCN",
+      "evaluation": "cross-subject",
+      "target_setting": "Window-end estimation",
+      "input": "AMG",
+      "filter": "5-100 Hz",
+      "seed": 42,
+      "test_windows": 61687,
+      "mae_deg": 8.840207003859831,
+      "rmse_deg": 12.514570190804347,
+      "pearson_r": 0.6718062343637226,
+      "aggregation": "pooled valid test windows; each output computed separately; arithmetic mean across four outputs"
+    },
+    {
+      "model": "LSTMPlus",
+      "evaluation": "cross-subject",
+      "target_setting": "Window-end estimation",
+      "input": "AMG",
+      "filter": "5-100 Hz",
+      "seed": 42,
+      "test_windows": 61687,
+      "mae_deg": 9.535463097503264,
+      "rmse_deg": 13.588674339286761,
+      "pearson_r": 0.6303235134668305,
+      "aggregation": "pooled valid test windows; each output computed separately; arithmetic mean across four outputs"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "evaluation": "cross-subject",
+      "target_setting": "Window-end estimation",
+      "input": "AMG",
+      "filter": "5-100 Hz",
+      "seed": 42,
+      "test_windows": 61687,
+      "mae_deg": 9.42592951426485,
+      "rmse_deg": 12.932263709260418,
+      "pearson_r": 0.6583250356210905,
+      "aggregation": "pooled valid test windows; each output computed separately; arithmetic mean across four outputs"
+    }
+  ],
+  "tasks": [
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "treadmill_walking_1_kmh",
+      "condition_name": "Walk at 1 km/h",
+      "condition_order": 0,
+      "n_subjects": 7,
+      "n_windows": 3848,
+      "mae_deg": 7.493093575305514,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "treadmill_walking_2_kmh",
+      "condition_name": "Walk at 2 km/h",
+      "condition_order": 1,
+      "n_subjects": 7,
+      "n_windows": 3846,
+      "mae_deg": 7.440793382356333,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "treadmill_walking_3_kmh",
+      "condition_name": "Walk at 3 km/h",
+      "condition_order": 2,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 7.279616053402938,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "treadmill_walking_4_kmh",
+      "condition_name": "Walk at 4 km/h",
+      "condition_order": 3,
+      "n_subjects": 7,
+      "n_windows": 3866,
+      "mae_deg": 7.567297583882184,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "treadmill_walking_5_kmh",
+      "condition_name": "Walk at 5 km/h",
+      "condition_order": 4,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 7.9635148498794734,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "quiet_stand",
+      "condition_name": "Quiet Stand",
+      "condition_order": 5,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 5.939761884457583,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "quiet_sit",
+      "condition_name": "Quiet Sit",
+      "condition_order": 6,
+      "n_subjects": 7,
+      "n_windows": 3854,
+      "mae_deg": 15.989944944826002,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "stand_sit_transition",
+      "condition_name": "Stand-sit transition",
+      "condition_order": 7,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 12.88697035850601,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "deep_squat",
+      "condition_name": "Deep Squat",
+      "condition_order": 8,
+      "n_subjects": 7,
+      "n_windows": 3852,
+      "mae_deg": 12.030987593220555,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "stair_ascent",
+      "condition_name": "Stair Ascent",
+      "condition_order": 9,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 9.011583428463393,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "forward_lunge",
+      "condition_name": "Forward Lunge",
+      "condition_order": 10,
+      "n_subjects": 7,
+      "n_windows": 3860,
+      "mae_deg": 12.708082060496102,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "left_lunge",
+      "condition_name": "Left Lunge",
+      "condition_order": 11,
+      "n_subjects": 7,
+      "n_windows": 3851,
+      "mae_deg": 11.755708997903394,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "vertical_jump",
+      "condition_name": "Vertical Jump",
+      "condition_order": 12,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 7.955932827197749,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "single_leg_stance",
+      "condition_name": "Single-leg Stance",
+      "condition_order": 13,
+      "n_subjects": 7,
+      "n_windows": 3859,
+      "mae_deg": 8.27275019437108,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "heel_raise",
+      "condition_name": "Heel Raise",
+      "condition_order": 14,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 6.981030454147098,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "Random Forest",
+      "model_order": 0,
+      "condition_id": "deadlift",
+      "condition_name": "Deadlift",
+      "condition_order": 15,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 12.165210201807215,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "treadmill_walking_1_kmh",
+      "condition_name": "Walk at 1 km/h",
+      "condition_order": 0,
+      "n_subjects": 7,
+      "n_windows": 3848,
+      "mae_deg": 7.92705104947276,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "treadmill_walking_2_kmh",
+      "condition_name": "Walk at 2 km/h",
+      "condition_order": 1,
+      "n_subjects": 7,
+      "n_windows": 3846,
+      "mae_deg": 7.7319864000692755,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "treadmill_walking_3_kmh",
+      "condition_name": "Walk at 3 km/h",
+      "condition_order": 2,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 7.700142021018615,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "treadmill_walking_4_kmh",
+      "condition_name": "Walk at 4 km/h",
+      "condition_order": 3,
+      "n_subjects": 7,
+      "n_windows": 3866,
+      "mae_deg": 8.261261316836285,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "treadmill_walking_5_kmh",
+      "condition_name": "Walk at 5 km/h",
+      "condition_order": 4,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 8.63195897439749,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "quiet_stand",
+      "condition_name": "Quiet Stand",
+      "condition_order": 5,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 5.244840936111914,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "quiet_sit",
+      "condition_name": "Quiet Sit",
+      "condition_order": 6,
+      "n_subjects": 7,
+      "n_windows": 3854,
+      "mae_deg": 8.834193416705224,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "stand_sit_transition",
+      "condition_name": "Stand-sit transition",
+      "condition_order": 7,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 11.757336947284156,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "deep_squat",
+      "condition_name": "Deep Squat",
+      "condition_order": 8,
+      "n_subjects": 7,
+      "n_windows": 3852,
+      "mae_deg": 10.352845358566325,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "stair_ascent",
+      "condition_name": "Stair Ascent",
+      "condition_order": 9,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 9.51923984095264,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "forward_lunge",
+      "condition_name": "Forward Lunge",
+      "condition_order": 10,
+      "n_subjects": 7,
+      "n_windows": 3860,
+      "mae_deg": 11.878012840220313,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "left_lunge",
+      "condition_name": "Left Lunge",
+      "condition_order": 11,
+      "n_subjects": 7,
+      "n_windows": 3851,
+      "mae_deg": 10.4969885758321,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "vertical_jump",
+      "condition_name": "Vertical Jump",
+      "condition_order": 12,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 8.021935538503142,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "single_leg_stance",
+      "condition_name": "Single-leg Stance",
+      "condition_order": 13,
+      "n_subjects": 7,
+      "n_windows": 3859,
+      "mae_deg": 7.402231235291609,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "heel_raise",
+      "condition_name": "Heel Raise",
+      "condition_order": 14,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 6.841625907046783,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "TCN",
+      "model_order": 1,
+      "condition_id": "deadlift",
+      "condition_name": "Deadlift",
+      "condition_order": 15,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 10.804270889582105,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "treadmill_walking_1_kmh",
+      "condition_name": "Walk at 1 km/h",
+      "condition_order": 0,
+      "n_subjects": 7,
+      "n_windows": 3848,
+      "mae_deg": 8.702543293325542,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "treadmill_walking_2_kmh",
+      "condition_name": "Walk at 2 km/h",
+      "condition_order": 1,
+      "n_subjects": 7,
+      "n_windows": 3846,
+      "mae_deg": 8.704347539170259,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "treadmill_walking_3_kmh",
+      "condition_name": "Walk at 3 km/h",
+      "condition_order": 2,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 9.10168269854632,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "treadmill_walking_4_kmh",
+      "condition_name": "Walk at 4 km/h",
+      "condition_order": 3,
+      "n_subjects": 7,
+      "n_windows": 3866,
+      "mae_deg": 9.481205686021246,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "treadmill_walking_5_kmh",
+      "condition_name": "Walk at 5 km/h",
+      "condition_order": 4,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 9.988944103921499,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "quiet_stand",
+      "condition_name": "Quiet Stand",
+      "condition_order": 5,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 6.807893347115477,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "quiet_sit",
+      "condition_name": "Quiet Sit",
+      "condition_order": 6,
+      "n_subjects": 7,
+      "n_windows": 3854,
+      "mae_deg": 8.052687394903659,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "stand_sit_transition",
+      "condition_name": "Stand-sit transition",
+      "condition_order": 7,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 12.133653809882109,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "deep_squat",
+      "condition_name": "Deep Squat",
+      "condition_order": 8,
+      "n_subjects": 7,
+      "n_windows": 3852,
+      "mae_deg": 10.419091349122803,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "stair_ascent",
+      "condition_name": "Stair Ascent",
+      "condition_order": 9,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 10.108486905106844,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "forward_lunge",
+      "condition_name": "Forward Lunge",
+      "condition_order": 10,
+      "n_subjects": 7,
+      "n_windows": 3860,
+      "mae_deg": 12.609391642738501,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "left_lunge",
+      "condition_name": "Left Lunge",
+      "condition_order": 11,
+      "n_subjects": 7,
+      "n_windows": 3851,
+      "mae_deg": 11.568015309335877,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "vertical_jump",
+      "condition_name": "Vertical Jump",
+      "condition_order": 12,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 8.865267961801894,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "single_leg_stance",
+      "condition_name": "Single-leg Stance",
+      "condition_order": 13,
+      "n_subjects": 7,
+      "n_windows": 3859,
+      "mae_deg": 8.000396772741215,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "heel_raise",
+      "condition_name": "Heel Raise",
+      "condition_order": 14,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 7.384275298025522,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "LSTMPlus",
+      "model_order": 2,
+      "condition_id": "deadlift",
+      "condition_name": "Deadlift",
+      "condition_order": 15,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 10.583241226497673,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "treadmill_walking_1_kmh",
+      "condition_name": "Walk at 1 km/h",
+      "condition_order": 0,
+      "n_subjects": 7,
+      "n_windows": 3848,
+      "mae_deg": 8.393027482867058,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "treadmill_walking_2_kmh",
+      "condition_name": "Walk at 2 km/h",
+      "condition_order": 1,
+      "n_subjects": 7,
+      "n_windows": 3846,
+      "mae_deg": 8.29081863965295,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "treadmill_walking_3_kmh",
+      "condition_name": "Walk at 3 km/h",
+      "condition_order": 2,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 8.716262370534542,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "treadmill_walking_4_kmh",
+      "condition_name": "Walk at 4 km/h",
+      "condition_order": 3,
+      "n_subjects": 7,
+      "n_windows": 3866,
+      "mae_deg": 8.895020606539328,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "treadmill_walking_5_kmh",
+      "condition_name": "Walk at 5 km/h",
+      "condition_order": 4,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 9.149713567506975,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "quiet_stand",
+      "condition_name": "Quiet Stand",
+      "condition_order": 5,
+      "n_subjects": 7,
+      "n_windows": 3853,
+      "mae_deg": 6.572100922321574,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "quiet_sit",
+      "condition_name": "Quiet Sit",
+      "condition_order": 6,
+      "n_subjects": 7,
+      "n_windows": 3854,
+      "mae_deg": 10.60710739972936,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "stand_sit_transition",
+      "condition_name": "Stand-sit transition",
+      "condition_order": 7,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 11.93941606095145,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "deep_squat",
+      "condition_name": "Deep Squat",
+      "condition_order": 8,
+      "n_subjects": 7,
+      "n_windows": 3852,
+      "mae_deg": 10.91495961826362,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "stair_ascent",
+      "condition_name": "Stair Ascent",
+      "condition_order": 9,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 9.679866651718639,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "forward_lunge",
+      "condition_name": "Forward Lunge",
+      "condition_order": 10,
+      "n_subjects": 7,
+      "n_windows": 3860,
+      "mae_deg": 11.615246721348809,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "left_lunge",
+      "condition_name": "Left Lunge",
+      "condition_order": 11,
+      "n_subjects": 7,
+      "n_windows": 3851,
+      "mae_deg": 11.016871909331773,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "vertical_jump",
+      "condition_name": "Vertical Jump",
+      "condition_order": 12,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 8.697116800942023,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "single_leg_stance",
+      "condition_name": "Single-leg Stance",
+      "condition_order": 13,
+      "n_subjects": 7,
+      "n_windows": 3859,
+      "mae_deg": 7.770451664483318,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "heel_raise",
+      "condition_name": "Heel Raise",
+      "condition_order": 14,
+      "n_subjects": 7,
+      "n_windows": 3858,
+      "mae_deg": 7.233743331550426,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    },
+    {
+      "model": "InceptionTimePlus",
+      "model_order": 3,
+      "condition_id": "deadlift",
+      "condition_name": "Deadlift",
+      "condition_order": 15,
+      "n_subjects": 7,
+      "n_windows": 3857,
+      "mae_deg": 11.222975753922565,
+      "aggregation": "within-subject output mean, then equal-subject mean"
+    }
+  ],
+  "coverage": [
+    {
+      "condition_id": "PI3",
+      "pod_count": 1,
+      "combo_label": "TA",
+      "cross_subject_mae_mean": 10.291810531906012,
+      "ci95_low": 9.868845635287435,
+      "ci95_high": 10.759795845970118,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI4",
+      "pod_count": 1,
+      "combo_label": "GA",
+      "cross_subject_mae_mean": 10.61262462418379,
+      "ci95_low": 10.08420649669797,
+      "ci95_high": 11.092914544475285,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI2",
+      "pod_count": 1,
+      "combo_label": "VM",
+      "cross_subject_mae_mean": 10.892790953384177,
+      "ci95_low": 10.523273651095662,
+      "ci95_high": 11.319942250300892,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1",
+      "pod_count": 1,
+      "combo_label": "RF",
+      "cross_subject_mae_mean": 11.046545604542118,
+      "ci95_low": 10.534560932285684,
+      "ci95_high": 11.57500128444168,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI3",
+      "pod_count": 2,
+      "combo_label": "RF+TA",
+      "cross_subject_mae_mean": 9.78108400859024,
+      "ci95_low": 9.222790990445692,
+      "ci95_high": 10.346896076017805,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI2+PI3",
+      "pod_count": 2,
+      "combo_label": "VM+TA",
+      "cross_subject_mae_mean": 9.91176353681767,
+      "ci95_low": 9.482005379259263,
+      "ci95_high": 10.385286942142049,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI3+PI4",
+      "pod_count": 2,
+      "combo_label": "TA+GA",
+      "cross_subject_mae_mean": 9.925575948860882,
+      "ci95_low": 9.47564268090764,
+      "ci95_high": 10.356498326180924,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI2+PI4",
+      "pod_count": 2,
+      "combo_label": "VM+GA",
+      "cross_subject_mae_mean": 10.158476664048184,
+      "ci95_low": 9.731699530213392,
+      "ci95_high": 10.551553965146768,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI4",
+      "pod_count": 2,
+      "combo_label": "RF+GA",
+      "cross_subject_mae_mean": 10.248748391731777,
+      "ci95_low": 9.790382774208643,
+      "ci95_high": 10.65931986304607,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI2",
+      "pod_count": 2,
+      "combo_label": "RF+VM",
+      "cross_subject_mae_mean": 10.436083790137474,
+      "ci95_low": 9.961051320870316,
+      "ci95_high": 10.934030781978183,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI2+PI3",
+      "pod_count": 3,
+      "combo_label": "RF+VM+TA",
+      "cross_subject_mae_mean": 9.64462737389087,
+      "ci95_low": 9.091012861541255,
+      "ci95_high": 10.22559064025756,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI3+PI4",
+      "pod_count": 3,
+      "combo_label": "RF+TA+GA",
+      "cross_subject_mae_mean": 9.72130298953469,
+      "ci95_low": 9.258633509872183,
+      "ci95_high": 10.177368616485792,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI2+PI3+PI4",
+      "pod_count": 3,
+      "combo_label": "VM+TA+GA",
+      "cross_subject_mae_mean": 9.728429749750314,
+      "ci95_low": 9.314288715924008,
+      "ci95_high": 10.14070198802291,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI2+PI4",
+      "pod_count": 3,
+      "combo_label": "RF+VM+GA",
+      "cross_subject_mae_mean": 9.981424912824869,
+      "ci95_low": 9.528542220604772,
+      "ci95_high": 10.40003005829515,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "condition_id": "PI1+PI2+PI3+PI4",
+      "pod_count": 4,
+      "combo_label": "All four",
+      "cross_subject_mae_mean": 9.589731568866753,
+      "ci95_low": 9.119811645854039,
+      "ci95_high": 10.056338676658612,
+      "n_cross_subjects": 7,
+      "aggregation": "within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    }
+  ],
+  "modality": [
+    {
+      "feature_label": "AMG",
+      "evaluation": "within-subject",
+      "mae_mean": 9.457531585489043,
+      "ci95_low": 9.096173998055198,
+      "ci95_high": 9.842776501052048,
+      "n_subjects": 30,
+      "feature_dimension": 384,
+      "aggregation": "within each subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "feature_label": "AMG",
+      "evaluation": "cross-subject",
+      "mae_mean": 9.589731568866753,
+      "ci95_low": 9.119811645854039,
+      "ci95_high": 10.056338676658612,
+      "n_subjects": 7,
+      "feature_dimension": 384,
+      "aggregation": "within each subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "feature_label": "AMG+EMG",
+      "evaluation": "within-subject",
+      "mae_mean": 8.820108673734296,
+      "ci95_low": 8.489576026213202,
+      "ci95_high": 9.179872930211475,
+      "n_subjects": 30,
+      "feature_dimension": 400,
+      "aggregation": "within each subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "feature_label": "EMG",
+      "evaluation": "within-subject",
+      "mae_mean": 12.054467283415631,
+      "ci95_low": 11.645807099880807,
+      "ci95_high": 12.48038862114454,
+      "n_subjects": 30,
+      "feature_dimension": 16,
+      "aggregation": "within each subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "feature_label": "AMG+EMG",
+      "evaluation": "cross-subject",
+      "mae_mean": 9.641547645156532,
+      "ci95_low": 9.056780831316797,
+      "ci95_high": 10.206755935670556,
+      "n_subjects": 7,
+      "feature_dimension": 400,
+      "aggregation": "within each subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "feature_label": "EMG",
+      "evaluation": "cross-subject",
+      "mae_mean": 13.743362074740345,
+      "ci95_low": 13.073181951841532,
+      "ci95_high": 14.395179460773685,
+      "n_subjects": 7,
+      "feature_dimension": 16,
+      "aggregation": "within each subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    }
+  ],
+  "density": [
+    {
+      "sensor_count": 1,
+      "cross_subject_mae_mean": 10.01151821283447,
+      "ci95_low": 9.593823933890016,
+      "ci95_high": 10.451222320616989,
+      "n_cross_subjects": 7,
+      "n_condition_combinations": 4,
+      "aggregation": "subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "sensor_count": 2,
+      "cross_subject_mae_mean": 9.729356121558236,
+      "ci95_low": 9.288474092992017,
+      "ci95_high": 10.166293071053868,
+      "n_cross_subjects": 7,
+      "n_condition_combinations": 6,
+      "aggregation": "subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "sensor_count": 3,
+      "cross_subject_mae_mean": 9.624191228131073,
+      "ci95_low": 9.183231291096178,
+      "ci95_high": 10.070456042493037,
+      "n_cross_subjects": 7,
+      "n_condition_combinations": 4,
+      "aggregation": "subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "sensor_count": 4,
+      "cross_subject_mae_mean": 9.589731568866753,
+      "ci95_low": 9.119811645854039,
+      "ci95_high": 10.056338676658612,
+      "n_cross_subjects": 7,
+      "n_condition_combinations": 1,
+      "aggregation": "subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    }
+  ],
+  "subjects": [
+    {
+      "training_subject_count": 5,
+      "cross_subject_mae_mean": 10.442813200769592,
+      "ci95_low": 10.0824581443149,
+      "ci95_high": 10.79674975348293,
+      "n_cross_subjects": 7,
+      "n_training_subsets": 5,
+      "aggregation": "training-subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "training_subject_count": 10,
+      "cross_subject_mae_mean": 9.923719472230305,
+      "ci95_low": 9.539628128394943,
+      "ci95_high": 10.322272157318048,
+      "n_cross_subjects": 7,
+      "n_training_subsets": 5,
+      "aggregation": "training-subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "training_subject_count": 15,
+      "cross_subject_mae_mean": 9.62988288737421,
+      "ci95_low": 9.224177399898876,
+      "ci95_high": 10.048478169208956,
+      "n_cross_subjects": 7,
+      "n_training_subsets": 5,
+      "aggregation": "training-subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    },
+    {
+      "training_subject_count": 20,
+      "cross_subject_mae_mean": 9.589731568866753,
+      "ci95_low": 9.119811645854039,
+      "ci95_high": 10.056338676658612,
+      "n_cross_subjects": 7,
+      "n_training_subsets": 1,
+      "aggregation": "training-subset mean within each test subject, then equal-subject mean",
+      "interval": "95% percentile subject-resampling bootstrap"
+    }
+  ],
+  "conditions": [
+    {
+      "condition_category": "functional_action",
+      "condition_id": "quiet_stand",
+      "condition_name": "Quiet Stand",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "quiet_sit",
+      "condition_name": "Quiet Sit",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "deadlift",
+      "condition_name": "Deadlift",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "deep_squat",
+      "condition_name": "Deep Squat",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "stair_ascent",
+      "condition_name": "Stair Ascent",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "left_lunge",
+      "condition_name": "Left Lunge",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "single_leg_stance",
+      "condition_name": "Single-leg Stance",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "forward_lunge",
+      "condition_name": "Forward Lunge",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "vertical_jump",
+      "condition_name": "Vertical Jump",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "stand_sit_transition",
+      "condition_name": "Stand-sit transition",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "functional_action",
+      "condition_id": "heel_raise",
+      "condition_name": "Heel Raise",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "treadmill_walking",
+      "condition_id": "treadmill_walking_1_kmh",
+      "condition_name": "Walk at 1 km/h",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "treadmill_walking",
+      "condition_id": "treadmill_walking_2_kmh",
+      "condition_name": "Walk at 2 km/h",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "treadmill_walking",
+      "condition_id": "treadmill_walking_3_kmh",
+      "condition_name": "Walk at 3 km/h",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "treadmill_walking",
+      "condition_id": "treadmill_walking_4_kmh",
+      "condition_name": "Walk at 4 km/h",
+      "expected_repetitions_per_subject": 4
+    },
+    {
+      "condition_category": "treadmill_walking",
+      "condition_id": "treadmill_walking_5_kmh",
+      "condition_name": "Walk at 5 km/h",
+      "expected_repetitions_per_subject": 4
+    }
+  ],
+  "counts": [
+    {
+      "target_setting": "Window-end estimation",
+      "all_valid": 263999,
+      "invalid": 82,
+      "within_train": 132123,
+      "within_validation": 65957,
+      "within_test": 65919,
+      "cross_train": 176229,
+      "cross_validation": 26083,
+      "cross_test": 61687
+    },
+    {
+      "target_setting": "Centered-window offline estimation",
+      "all_valid": 263994,
+      "invalid": 87,
+      "within_train": 132119,
+      "within_validation": 65955,
+      "within_test": 65920,
+      "cross_train": 176225,
+      "cross_validation": 26083,
+      "cross_test": 61686
+    },
+    {
+      "target_setting": "Forecasting (joint-angle label 100 ms after the window end)",
+      "all_valid": 263833,
+      "invalid": 248,
+      "within_train": 132036,
+      "within_validation": 65920,
+      "within_test": 65877,
+      "cross_train": 176129,
+      "cross_validation": 26062,
+      "cross_test": 61642
+    }
+  ]
+}

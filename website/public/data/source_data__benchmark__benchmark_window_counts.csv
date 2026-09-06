@@ -1,0 +1,4 @@
+target_setting,all_valid,invalid,within_train,within_validation,within_test,cross_train,cross_validation,cross_test
+Window-end estimation,263999,82,132123,65957,65919,176229,26083,61687
+Centered-window offline estimation,263994,87,132119,65955,65920,176225,26083,61686
+Forecasting (joint-angle label 100 ms after the window end),263833,248,132036,65920,65877,176129,26062,61642

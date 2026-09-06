@@ -1,0 +1,5 @@
+sensor_count,cross_subject_mae_mean,ci95_low,ci95_high,n_cross_subjects,n_condition_combinations,aggregation,interval
+1,10.01151821283447,9.593823933890016,10.451222320616989,7,4,"subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+2,9.729356121558236,9.288474092992017,10.166293071053868,7,6,"subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+3,9.624191228131073,9.183231291096178,10.070456042493037,7,4,"subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+4,9.589731568866753,9.119811645854039,10.056338676658612,7,1,"subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap

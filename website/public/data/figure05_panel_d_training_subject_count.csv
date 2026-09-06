@@ -1,0 +1,5 @@
+training_subject_count,cross_subject_mae_mean,ci95_low,ci95_high,n_cross_subjects,n_training_subsets,aggregation,interval
+5,10.442813200769592,10.0824581443149,10.79674975348293,7,5,"training-subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+10,9.923719472230305,9.539628128394943,10.322272157318048,7,5,"training-subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+15,9.62988288737421,9.224177399898876,10.048478169208956,7,5,"training-subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+20,9.589731568866753,9.119811645854039,10.056338676658612,7,1,"training-subset mean within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap

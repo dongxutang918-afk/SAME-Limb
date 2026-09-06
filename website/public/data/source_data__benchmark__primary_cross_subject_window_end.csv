@@ -1,0 +1,5 @@
+model,evaluation,target_setting,input,filter,seed,test_windows,mae_deg,rmse_deg,pearson_r,aggregation
+Random Forest,cross-subject,Window-end estimation,AMG,5-100 Hz,42,61687,9.591110090300502,13.638971561356072,0.6343992378283507,pooled valid test windows; each output computed separately; arithmetic mean across four outputs
+TCN,cross-subject,Window-end estimation,AMG,5-100 Hz,42,61687,8.840207003859831,12.514570190804347,0.6718062343637226,pooled valid test windows; each output computed separately; arithmetic mean across four outputs
+LSTMPlus,cross-subject,Window-end estimation,AMG,5-100 Hz,42,61687,9.535463097503264,13.588674339286761,0.6303235134668305,pooled valid test windows; each output computed separately; arithmetic mean across four outputs
+InceptionTimePlus,cross-subject,Window-end estimation,AMG,5-100 Hz,42,61687,9.42592951426485,12.932263709260418,0.6583250356210905,pooled valid test windows; each output computed separately; arithmetic mean across four outputs

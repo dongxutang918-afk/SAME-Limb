@@ -1,0 +1,17 @@
+condition_category,condition_id,condition_name,expected_repetitions_per_subject
+functional_action,quiet_stand,Quiet Stand,4
+functional_action,quiet_sit,Quiet Sit,4
+functional_action,deadlift,Deadlift,4
+functional_action,deep_squat,Deep Squat,4
+functional_action,stair_ascent,Stair Ascent,4
+functional_action,left_lunge,Left Lunge,4
+functional_action,single_leg_stance,Single-leg Stance,4
+functional_action,forward_lunge,Forward Lunge,4
+functional_action,vertical_jump,Vertical Jump,4
+functional_action,stand_sit_transition,Stand-sit transition,4
+functional_action,heel_raise,Heel Raise,4
+treadmill_walking,treadmill_walking_1_kmh,Walk at 1 km/h,4
+treadmill_walking,treadmill_walking_2_kmh,Walk at 2 km/h,4
+treadmill_walking,treadmill_walking_3_kmh,Walk at 3 km/h,4
+treadmill_walking,treadmill_walking_4_kmh,Walk at 4 km/h,4
+treadmill_walking,treadmill_walking_5_kmh,Walk at 5 km/h,4

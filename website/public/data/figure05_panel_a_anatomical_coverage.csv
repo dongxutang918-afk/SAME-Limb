@@ -1,0 +1,16 @@
+condition_id,pod_count,combo_label,cross_subject_mae_mean,ci95_low,ci95_high,n_cross_subjects,aggregation,interval
+PI3,1,TA,10.291810531906012,9.868845635287435,10.759795845970118,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI4,1,GA,10.61262462418379,10.08420649669797,11.092914544475285,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI2,1,VM,10.892790953384177,10.523273651095662,11.319942250300892,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1,1,RF,11.046545604542118,10.534560932285684,11.57500128444168,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI3,2,RF+TA,9.78108400859024,9.222790990445692,10.346896076017805,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI2+PI3,2,VM+TA,9.91176353681767,9.482005379259263,10.385286942142049,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI3+PI4,2,TA+GA,9.925575948860882,9.47564268090764,10.356498326180924,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI2+PI4,2,VM+GA,10.158476664048184,9.731699530213392,10.551553965146768,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI4,2,RF+GA,10.248748391731777,9.790382774208643,10.65931986304607,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI2,2,RF+VM,10.436083790137474,9.961051320870316,10.934030781978183,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI2+PI3,3,RF+VM+TA,9.64462737389087,9.091012861541255,10.22559064025756,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI3+PI4,3,RF+TA+GA,9.72130298953469,9.258633509872183,10.177368616485792,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI2+PI3+PI4,3,VM+TA+GA,9.728429749750314,9.314288715924008,10.14070198802291,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI2+PI4,3,RF+VM+GA,9.981424912824869,9.528542220604772,10.40003005829515,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap
+PI1+PI2+PI3+PI4,4,All four,9.589731568866753,9.119811645854039,10.056338676658612,7,"within each test subject, then equal-subject mean",95% percentile subject-resampling bootstrap

@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use SAME-Limb or its benchmark assets, cite this dataset and the associated article."
+title: "SAME-Limb: Synchronized AMG and EMG Dataset of Lower-limb Muscle Activities in Everyday Training"
+type: dataset
+version: 2.0.3
+doi: "10.57967/hf/9950"
+url: "https://huggingface.co/datasets/Tdongxu/A_Synchronized_Lower_Limb_AMG_sEMG_and_Mocap"
+date-released: 2026-08-13
+license: CC-BY-4.0
+authors:
+  - family-names: Tang
+    given-names: Dongxu
+    affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+  - family-names: Shih
+    given-names: Ying-Lei
+    affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+  - family-names: Ren
+    given-names: Zhuoyi
+    affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+  - family-names: Liao
+    given-names: Jianting
+    affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+  - family-names: Shao
+    given-names: Yitian
+    affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+preferred-citation:
+  type: article
+  title: "Synchronized AMG and EMG Dataset of Lower-limb Muscle Activities in Everyday Training"
+  doi: "10.48550/arXiv.2608.11958"
+  url: "https://arxiv.org/abs/2608.11958"
+  year: 2026
+  month: 8
+  day: 12
+  identifiers:
+    - type: other
+      value: "arXiv:2608.11958v1"
+      description: "arXiv identifier"
+  authors:
+    - family-names: Tang
+      given-names: Dongxu
+      affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+    - family-names: Shih
+      given-names: Ying-Lei
+      affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+    - family-names: Ren
+      given-names: Zhuoyi
+      affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+    - family-names: Liao
+      given-names: Jianting
+      affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
+    - family-names: Shao
+      given-names: Yitian
+      affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen, Shenzhen, China"
