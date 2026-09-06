@@ -7,6 +7,37 @@ export function createWalkingPose(avatar:T.Object3D,skeleton:T.Skeleton){
   if(!b)throw new Error('Missing anatomical rig bone: '+n);return b;
  };
  const qAvatar=new T.Quaternion(),qParent=new T.Quaternion();
+ // Keep the bind-pose anatomy of each hand. The radial axis points toward
+ // the index finger; its cross product with the fingers is dorsal only on
+ // the left hand, so flexion must be mirrored on the right hand.
+ const hands=['Left','Right'].map(side=>{
+  const hand=bone(side+'Hand'),middle=bone(side+'HandMiddle1');
+  const along=middle.position.clone().normalize();
+  const radial=bone(side+'HandIndex1').position.clone().sub(bone(side+'HandPinky1').position);
+  radial.addScaledVector(along,-radial.dot(along)).normalize();
+  const normal=radial.clone().cross(along).normalize(),sign=side==='Left'?1:-1;
+  const restInverse=new T.Quaternion().setFromRotationMatrix(new T.Matrix4().makeBasis(radial,along,normal)).invert();
+  const joints:{bone:T.Bone;rotation:T.Quaternion}[]=[];
+  for(const [i,digit] of ['Index','Middle','Ring','Pinky'].entries()){
+   const first=bone(side+'Hand'+digit+'1'),second=bone(side+'Hand'+digit+'2'),third=bone(side+'Hand'+digit+'3');
+   const spread=Math.atan2(second.position.dot(radial),second.position.dot(along))-T.MathUtils.degToRad([3,0,-2,-4][i]);
+   const rotation=new T.Quaternion().setFromAxisAngle(normal,spread)
+    .multiply(new T.Quaternion().setFromAxisAngle(radial,-sign*T.MathUtils.degToRad(10+i*2)))
+    .multiply(first.quaternion);
+   joints.push({bone:first,rotation});
+   for(const [joint,angle] of [[second,8],[third,4]] as const){
+    joints.push({bone:joint,rotation:new T.Quaternion().setFromAxisAngle(radial,-sign*T.MathUtils.degToRad(angle)).multiply(joint.quaternion)});
+   }
+  }
+  // A small in-plane adduction keeps the thumb beside the index finger.
+  // Preserve its original opposition and phalange roll instead of aiming
+  // each thumb segment independently out through the back of the hand.
+  for(const i of [1,2,3]){
+   const joint=bone(side+'HandThumb'+i);
+   joints.push({bone:joint,rotation:new T.Quaternion().setFromAxisAngle(normal,T.MathUtils.degToRad(i===1?8:0)).multiply(joint.quaternion)});
+  }
+  return {side,hand,restInverse,joints};
+ });
  const point=(b:T.Bone,child:T.Bone,dir:T.Vector3)=>{
   avatar.getWorldQuaternion(qAvatar);b.parent!.getWorldQuaternion(qParent);
   b.quaternion.setFromUnitVectors(child.position.clone().normalize(),dir.clone().applyQuaternion(qAvatar).applyQuaternion(qParent.invert()).normalize());b.updateMatrixWorld(true);
@@ -21,13 +52,12 @@ export function createWalkingPose(avatar:T.Object3D,skeleton:T.Skeleton){
   point(a,b,elbow.sub(start));point(b,c,end.sub(at(b)));
  };
  const handFrame=(side:string,dir:T.Vector3)=>{
-  const hand=bone(side+'Hand'),middle=bone(side+'HandMiddle1'),index=bone(side+'HandIndex1'),pinky=bone(side+'HandPinky1');
-  const restY=middle.position.clone().normalize(),restX=index.position.clone().sub(pinky.position);restX.addScaledVector(restY,-restX.dot(restY)).normalize();
-  const restZ=restX.clone().cross(restY).normalize(),newY=dir.normalize(),newX=newY.clone().cross(new T.Vector3(0,0,1)).normalize().multiplyScalar(side==='Left'?1:-1),newZ=newX.clone().cross(newY);
-  const restQ=new T.Quaternion().setFromRotationMatrix(new T.Matrix4().makeBasis(restX,restY,restZ));
+  const {hand,restInverse,joints}=hands.find(h=>h.side===side)!;
+  const newY=dir.clone().normalize(),newX=newY.clone().cross(new T.Vector3(0,0,1)).normalize().multiplyScalar(side==='Left'?1:-1),newZ=newX.clone().cross(newY);
   const newQ=new T.Quaternion().setFromRotationMatrix(new T.Matrix4().makeBasis(newX,newY,newZ));
   avatar.getWorldQuaternion(qAvatar);hand.parent!.getWorldQuaternion(qParent);
-  hand.quaternion.copy(qParent.invert()).multiply(qAvatar).multiply(newQ).multiply(restQ.invert());
+  hand.quaternion.copy(qParent.invert()).multiply(qAvatar).multiply(newQ).multiply(restInverse);
+  for(const joint of joints)joint.bone.quaternion.copy(joint.rotation);
  };
  return (phase:number)=>{
   const hips=bone('Hips');hips.position.y=.891+.007*Math.cos(phase*Math.PI*4);hips.rotation.y=.025*Math.sin(phase*Math.PI*2);hips.rotation.z=.009*Math.sin(phase*Math.PI*2);
@@ -48,16 +78,6 @@ export function createWalkingPose(avatar:T.Object3D,skeleton:T.Skeleton){
    solve(arm,fore,hand,new T.Vector3(-sign*.050,chestY+.018+(side==='Left'?.028:0),side==='Left'?.175:.136),new T.Vector3(sign*.16,-.23,.13));
    handFrame(side,new T.Vector3(-sign*.89,.42,-.17));
    hand.updateMatrixWorld(true);
-   // Bring the spread neutral fingers together and gently curve them onto the opposite upper arm.
-   for(const [i,digit] of ['Index','Middle','Ring','Pinky'].entries()){
-    const first=bone(side+'Hand'+digit+'1'),second=bone(side+'Hand'+digit+'2'),third=bone(side+'Hand'+digit+'3');
-    point(first,second,new T.Vector3(-sign*.92,.28+(i-1.5)*.055,-.25));
-    point(second,third,new T.Vector3(-sign*.85,.16,-.42));
-    third.quaternion.identity();
-   }
-   const thumb1=bone(side+'HandThumb1'),thumb2=bone(side+'HandThumb2'),thumb3=bone(side+'HandThumb3');
-   point(thumb1,thumb2,new T.Vector3(-sign*.60,.50,-.19));
-   point(thumb2,thumb3,new T.Vector3(-sign*.86,.30,-.15));thumb3.quaternion.identity();
   }
   avatar.updateMatrixWorld(true);skeleton.update();
  };
