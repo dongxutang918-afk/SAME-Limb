@@ -17,7 +17,7 @@ The interactive participant is an illustration, not a participant scan or a reco
 - Datasheet: https://www.st.com/resource/en/datasheet/ais2ih.pdf
 - IC package: 2 × 2 mm, 0.93 mm nominal height (1 mm maximum). Product illustration is from STMicroelectronics; manufacturer retains image rights.
 - The custom AMG carrier board has no reported dimensions. Its approximately 6 × 5 mm footprint is estimated from paper Fig. 1 relative to LE230, not a manufacturer specification. Board thickness and mount details are illustrative.
-- All device geometry uses meters and remains at the same scale during explosion; only position and orientation change.
+- All device geometry uses meters. Explosion changes position and orientation. The local front-view arrangement follows paper Fig. 1(a): AMG1 above EMG, AMG2 and AMG3 on its right, and AMG4 below, numbered from top to bottom. This relationship is preserved throughout explosion; inter-device spacing is an estimate from the photograph. To identify a selected device, the website temporarily enlarges EMG to 2.2× or AMG to 5× and adds a soft glow; the physical-scale layout returns when the selection closes.
 
 Research basis: arXiv:2608.11958v1, Fig. 1 and sections II–III; dataset v2.0.3 channels.csv. Original research figures were not modified.
 

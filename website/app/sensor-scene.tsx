@@ -6,6 +6,7 @@ import {  Expand, Minus, MousePointer2, ScanLine, X, Play, Pause, ArrowUpRight }
 import type { RunnerAPI, Selection } from './runner-engine';
 import {Tabs,TabsList,TabsTrigger} from '@/components/ui/tabs';
 import {jointDefinitions,type JointId,type SceneMode} from './mocap-definitions';
+import {amgPlacement} from './sensor-layout';
 
 export const sites = [
  {id:'RF',name:'Rectus femoris',area:'Anterior thigh',detail:'Four triaxial AMG modules and one surface EMG sensor sample the mechanical and electrical activity around the rectus femoris.',color:'#df7381'},
@@ -50,17 +51,16 @@ export default function SensorScene({mode,onModeChange}:{mode:SceneMode;onModeCh
   </div>
   <div className="scene-instruction"><MousePointer2 size={15}/><span>{mode==='mocap'?'Select a knee or ankle to highlight its marker vectors.':pinned?'Selection held open. Close the card to resume.':expanded?'Explore a sensor. Move away to reassemble.':'Hover over the model to explore the sensors.'}</span></div>
   <p className="drag-hint">Drag horizontally to rotate · Arrow keys when focused</p>
-  <p className="scene-disclaimer">{mode==='mocap'?'Schematic marker positions · θ is the angle between the two vectors':'Illustrative walking · Arms crossed over the chest'}<br/>{mode==='mocap'?'Joint definitions follow SI Table S6':'LE230 at physical scale · Custom AMG board size estimated from Fig. 1'}</p>
+  <p className="scene-disclaimer">{mode==='mocap'?'Schematic marker positions · θ is the angle between the two vectors':'Illustrative walking · Arms crossed over the chest'}<br/>{mode==='mocap'?'Joint definitions follow SI Table S6':'Physical-scale layout · Selected sensor enlarged for inspection'}</p>
   {failed&&<div className="fallback-buttons">{sites.map((s,i)=><button key={s.id} onClick={()=>choose({site:i,sensor:4})}>{s.id} {s.name}</button>)}</div>}
   {mode==='mocap'&&<aside className="sensor-info mocap-info" aria-live="polite"><button className="info-close" aria-label="Return to muscle sensors" onClick={()=>onModeChange('sensors')}><X size={16}/></button><p className="eyebrow">OPTICAL MOTION CAPTURE</p><h3>NOKOV Mars2H</h3><p>16 infrared cameras track 15 markers at 90 Hz.</p><Tabs value={joint} onValueChange={v=>setJoint(v as JointId)}><TabsList className="scene-joint-tabs" aria-label="Joint marker geometry">{jointDefinitions.map(d=><TabsTrigger value={d.id} key={d.id}>{d.name}</TabsTrigger>)}</TabsList></Tabs><div className="mocap-joint-caption"><strong>{activeJoint.name}</strong><p>{activeJoint.markers}</p><span>{activeJoint.rule}</span></div><small>Blue lines and the arc show the selected joint’s marker geometry. XINGYING 3.4.0.3957.</small><a className="mocap-method-link" href="https://arxiv.org/pdf/2608.11958#page=19" target="_blank" rel="noreferrer">SI Table S6 <ArrowUpRight size={14}/></a></aside>}
   {mode==='sensors'&&site&&selected&&<aside className="sensor-info" onPointerDown={pin} onPointerEnter={()=>api.current?.expand(true)} aria-live="polite" style={{'--sensor-color':site.color} as React.CSSProperties}>
    <button className="info-close" aria-label="Close sensor information" onClick={()=>expand(false)}><X size={16}/></button>
-   <p className="eyebrow">{site.id} / {isEmg?'SURFACE EMG':'AMG 0'+(selected.sensor+1)}</p><h3>{site.name}</h3><p className="sensor-en">{site.area}</p>
-   <p>{site.detail}</p><div className="device-selector" aria-label="Choose a sensor">{[0,1,2,3,4].map(j=><button key={j} aria-pressed={selected.sensor===j} onClick={()=>choose({site:selected.site,sensor:j})}>{j===4?'EMG':'A'+(j+1)}</button>)}</div>
+   <p className="eyebrow">{site.id} / {isEmg?'SURFACE EMG':amgPlacement[selected.sensor].label}</p><h3>{site.name}</h3><p className="sensor-en">{site.area}</p>
+   <p>{site.detail}</p><div className="device-selector" aria-label="Choose a sensor">{[0,1,2,3,4].map(j=><button key={j} aria-pressed={selected.sensor===j} title={j===4?'EMG · Center':amgPlacement[j].label+' · '+amgPlacement[j].location} aria-label={site.id+' '+(j===4?'surface EMG sensor':amgPlacement[j].label+', '+amgPlacement[j].location)} onClick={()=>{pin();expand(true);choose({site:selected.site,sensor:j});}}>{j===4?'EMG':amgPlacement[j].label}</button>)}</div>
    <div className="hardware-reference"><img src={isEmg?assetUrl('/assets/hardware/le230-official.webp'):assetUrl('/assets/hardware/ais2ihtr-official.jpg')} alt={isEmg?'Official Biometrics LE230 product photo, showing the black enclosure and silver dry contacts':'Official ST AIS2IHTR chip package image; the custom carrier board is separate'}/><div><strong>{isEmg?'Biometrics LE230':'ST AIS2IHTR'}</strong><span>{isEmg?'42 × 24 × 14 mm enclosure':'2 × 2 × 0.93 mm IC'}</span><a href={isEmg?'https://www.biometricsltd.com/surface-emg-sensor.htm':'https://www.st.com/en/mems-and-sensors/ais2ih.html'} target="_blank" rel="noreferrer">Manufacturer <ArrowUpRight size={12}/></a></div></div>
    <dl><div><dt>{isEmg?'Native sampling':'Nominal AMG grid'}</dt><dd>{isEmg?'1,000 Hz':'1,600 Hz'}</dd></div><div><dt>Channel</dt><dd>{isEmg?site.id+'_sEMG':site.id+'_S'+(selected.sensor+1)+'_{X,Y,Z}'}</dd></div><div><dt>{isEmg?'Dry contacts':'Custom board'}</dt><dd>{isEmg?'Ø10 mm · 20 mm spacing':'≈ 6 × 5 mm (estimated)'}</dd></div><div><dt>Signal unit</dt><dd>{isEmg?'µV':'g/digit'}</dd></div></dl>
    <small>{isEmg?'Geometry follows the manufacturer dimensions and paper Fig. 1.':'IC dimensions are from ST. Carrier-board dimensions are a visual estimate from paper Fig. 1, not a published measurement.'} Acquisition: paper §II–III and channels.csv.</small>
   </aside>}
  </div>;
 }
-

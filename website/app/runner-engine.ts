@@ -2,6 +2,8 @@ import {assetUrl} from './asset-path';
 import * as T from 'three';
 import {createWalkingPose} from './rig-motion';
 import {createMocapOverlay} from './mocap-overlay';
+import {createSensorFocus} from './sensor-focus';
+import {amgPlacement} from './sensor-layout';
 import type {JointId} from './mocap-definitions';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
@@ -12,7 +14,7 @@ type Callbacks={onExpand:(v:boolean)=>void;onSelect:(v:Selection)=>void;onReady:
 const colors=['#b93c57','#dc6471','#ce5e7b','#9e2f4b'];
 const boneNames=['LeftUpLeg','LeftUpLeg','LeftLeg','LeftLeg'];
 const anchors=[[.119,.681,.121],[.105,.523,.090],[.190,.321,.060],[.185,.352,-.071]];
-const V=(a:number[])=>new T.Vector3(a[0],a[1],a[2]);
+const V=(a:readonly number[])=>new T.Vector3(a[0],a[1],a[2]);
 
 export async function createRunner(host:HTMLDivElement,pins:(HTMLButtonElement|null)[],callbacks:Callbacks,jointPins:(HTMLButtonElement|null)[],pointLabels:(HTMLSpanElement|null)[]):Promise<RunnerAPI>{
  const renderer=new T.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
@@ -156,11 +158,14 @@ export async function createRunner(host:HTMLDivElement,pins:(HTMLButtonElement|n
   const sleeve=new T.Mesh(new T.CylinderGeometry(.00055,.00055,.005,10),blue);sleeve.rotation.z=Math.PI/2;sleeve.position.set(.006,0,.001);g.add(sleeve);
   return g;
  };
+ const sensorFocus=createSensorFocus();
  const clusters=anchors.map((a,i)=>{
   const g=new T.Group();root.add(g);
   const devices=[amgDevice(),amgDevice(),amgDevice(),amgDevice(),emgDevice()];
-  const mounts=[new T.Vector3(.027,.029,0),new T.Vector3(.040,.009,0),new T.Vector3(.041,-.013,0),new T.Vector3(.029,-.034,0),new T.Vector3()];
+  const mounts=[...amgPlacement.map(p=>V(p.mount)),new T.Vector3()];
+  const explodedMounts=[...amgPlacement.map(p=>V(p.exploded)),new T.Vector3(0,0,.018)];
   devices.forEach((d,j)=>{d.position.copy(mounts[j]);d.traverse(o=>o.userData={site:i,sensor:j});g.add(d);});
+  const focus=devices.map((d,j)=>sensorFocus.attach(d,colors[i],j===4));
   const wires=devices.slice(0,4).map((d,j)=>{
    const material=white.clone();const mesh=new T.Mesh(new T.BufferGeometry(),material);mesh.userData={site:i,sensor:j};g.add(mesh);return mesh;
   });
@@ -169,8 +174,10 @@ export async function createRunner(host:HTMLDivElement,pins:(HTMLButtonElement|n
   const targetBone=bone(boneNames[i]),anchor=V(a).applyMatrix4(bindInverse.get(targetBone.name)!);
   const offset=V([[.34,.13,.07],[-.36,.06,.18],[.36,-.035,.19],[-.31,-.24,.25]][i]);
   const poseQuat=new T.Quaternion().setFromEuler(new T.Euler(0,i===3?Math.PI:i===1?-.25:.05,0));
-  return{group:g,devices,mounts,wires,line,bone:targetBone,anchor,offset,poseQuat,lastAmount:-1};
+  return{group:g,devices,focus,mounts,explodedMounts,wires,line,bone:targetBone,anchor,offset,poseQuat,lastAmount:-1};
  });
+ // Each device now owns its highlighted materials; release the construction templates.
+ [black,silver,green,gold,blue,white,panelMat].forEach(material=>material.dispose());
 
 
  // Ten angle-construction landmarks follow SI Table S6. Five additional markers
@@ -209,7 +216,7 @@ export async function createRunner(host:HTMLDivElement,pins:(HTMLButtonElement|n
   const hits=ray.intersectObjects(candidates,true);
   if(hits.length){
    cancelCollapse();
-   if(!target){target=1;callbacks.onExpand(true);}
+   if(!selectedJoint&&!target){target=1;callbacks.onExpand(true);}
    const u=hits[0].object.userData;callbacks.onMarker?.(u.marker??null);
    if(!selectedJoint&&typeof u.site==='number'){const sel=callbacks.getSelected();if(!sel||sel.site!==u.site||sel.sensor!==u.sensor)callbacks.onSelect({site:u.site,sensor:u.sensor});}
    renderer.domElement.style.cursor='pointer';
@@ -234,26 +241,27 @@ export async function createRunner(host:HTMLDivElement,pins:(HTMLButtonElement|n
   if(isPlaying&&!reduce.matches)phase=(phase+dt*.76*(selectedJoint?1:Math.max(0,1-amount*6)))%1;
   root.rotation.x+=(tilt-root.rotation.x)*smoothing;
   pose(phase);root.updateMatrixWorld(true);root.getWorldQuaternion(rootQuat);
+  const selected=selectedJoint||!target?null:callbacks.getSelected();
   clusters.forEach((c,i)=>{
    anchorPos.copy(c.anchor).applyMatrix4(c.bone.matrixWorld);root.worldToLocal(anchorPos);
    c.group.position.copy(anchorPos).addScaledVector(c.offset,amount);
    c.bone.getWorldQuaternion(baseQuat);baseQuat.premultiply(rootQuat.clone().invert()).multiply(c.poseQuat);
    wantedQuat.setFromEuler(new T.Euler(-.08,.28,0));c.group.quaternion.copy(baseQuat).slerp(wantedQuat,amount);
+   let focusChanged=false;
    c.devices.forEach((d,j)=>{
-    d.position.copy(c.mounts[j]);
-    if(j<4){d.position.x+=(j%2===0?-.045:.045)*amount;d.position.y+=(j<2?.03:-.027)*amount;d.position.z+=.035*amount;}
-    else d.position.z=.018*amount;
+    d.position.lerpVectors(c.mounts[j],c.explodedMounts[j],amount);
+    focusChanged=c.focus[j].update(selected?.site===i&&selected.sensor===j?amount:0,dt,reduce.matches)||focusChanged;
    });
-   if(Math.abs(c.lastAmount-amount)>.005){
+   if(Math.abs(c.lastAmount-amount)>.005||focusChanged){
     c.wires.forEach((w,j)=>{
-     const start=c.devices[j].position.clone().add(new T.Vector3(.009,0,.001));
+     const start=new T.Vector3(.009,0,.001).multiply(c.devices[j].scale).add(c.devices[j].position);
      const end=new T.Vector3(.085,.075,-.008),mid=start.clone().lerp(end,.55);mid.z+=.016;
      const curve=new T.CatmullRomCurve3([start,mid,end]);w.geometry.dispose();w.geometry=new T.TubeGeometry(curve,16,.00034,5,false);
     });c.lastAmount=amount;
    }
    const attr=c.line.geometry.getAttribute('position');attr.setXYZ(0,anchorPos.x,anchorPos.y,anchorPos.z);attr.setXYZ(1,c.group.position.x,c.group.position.y,c.group.position.z);attr.needsUpdate=true;c.line.computeLineDistances();c.line.material.opacity=amount*.5;
    const button=pins[i];
-   if(button){c.group.getWorldPosition(projected);projected.y+=.048;projected.project(camera);const shiftX=[42,-45,42,-42][i]*(1-amount);button.style.left=((projected.x*.5+.5)*host.clientWidth+shiftX)+'px';button.style.top=((-projected.y*.5+.5)*host.clientHeight)+'px';}
+   if(button){c.group.getWorldPosition(projected);projected.y+=.048+.048*amount;projected.project(camera);const shiftX=[42,-45,42,-42][i]*(1-amount);button.style.left=((projected.x*.5+.5)*host.clientWidth+shiftX)+'px';button.style.top=((-projected.y*.5+.5)*host.clientHeight)+'px';}
   });
   markers.forEach(m=>{m.mesh.position.copy(m.anchor).applyMatrix4(m.bone.matrixWorld);root.worldToLocal(m.mesh.position);});
   markerOverlay.update();
@@ -261,12 +269,19 @@ export async function createRunner(host:HTMLDivElement,pins:(HTMLButtonElement|n
  };
  pose(phase);frame=requestAnimationFrame(animate);callbacks.onReady();
  return{
-  expand:v=>{cancelCollapse();target=v?1:0;},play:v=>{isPlaying=v;},
-  mocap:joint=>{selectedJoint=joint;markerOverlay.select(joint);target=joint?1:0;callbacks.onExpand(!!joint);callbacks.onSelect(null);},
+  expand:v=>{cancelCollapse();target=v&&!selectedJoint?1:0;callbacks.onExpand(!!target);},play:v=>{isPlaying=v;},
+  mocap:joint=>{
+   cancelCollapse();selectedJoint=joint;markerOverlay.select(joint);target=0;
+   if(joint){
+    // Joint geometry is shown with every sensor at its attached, physical scale.
+    amount=0;clusters.forEach(cluster=>cluster.focus.forEach(focus=>focus.update(0,0,true)));
+   }
+   callbacks.onExpand(false);callbacks.onSelect(null);
+  },
   reset:()=>{rotation=0;tilt=0;phase=.15;target=0;isPlaying=true;callbacks.onExpand(false);callbacks.onSelect(null);},
   dispose:()=>{disposed=true;cancelCollapse();cancelAnimationFrame(frame);resizeObserver.disconnect();intersection.disconnect();renderer.domElement.removeEventListener('pointermove',handleMove);renderer.domElement.removeEventListener('pointerdown',handleDown);renderer.domElement.removeEventListener('pointerup',handleUp);renderer.domElement.removeEventListener('pointercancel',handleUp);renderer.domElement.removeEventListener('keydown',handleKey);
    const geometries=new Set<T.BufferGeometry>(),materials=new Set<T.Material>();
-   scene.traverse(o=>{const m=o as T.Mesh;if(m.geometry)geometries.add(m.geometry);if(m.material)(Array.isArray(m.material)?m.material:[m.material]).forEach(x=>materials.add(x));});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());labelTexture.dispose();shadowTexture.dispose();renderer.dispose();renderer.domElement.remove();
+   scene.traverse(o=>{const m=o as T.Mesh;if(m.geometry)geometries.add(m.geometry);if(m.material)(Array.isArray(m.material)?m.material:[m.material]).forEach(x=>materials.add(x));});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());sensorFocus.dispose();labelTexture.dispose();shadowTexture.dispose();renderer.dispose();renderer.domElement.remove();
   }
  };
 }
